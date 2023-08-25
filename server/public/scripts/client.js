@@ -18,6 +18,8 @@ function clearInput(){
     calcToPerform = '';
 }
 
+let inputOne = '';
+let inputTwo = '';
 let calcToPerform = '';
 function setCalc(){
     if (this.id == 'plus'){
@@ -38,20 +40,22 @@ function setCalc(){
 function submit(){
     console.log('in submit()')
     
-    if (emptyFields()){
-        return
-    }
-    
     let postData = {
         number1: $('#input-one').val(),
         number2: $('#input-two').val(),
         calc: calcToPerform
+    }
+    inputOne = Number(postData.number1);
+    inputTwo = Number(postData.number2);
+    if (emptyFields(inputOne,inputTwo)){
+        return
     }
     $.ajax({   
         type: 'POST',  
         url: '/calc',
         data: postData
     }).then( (res) => { // if good response ie 200,201:
+        calcToPerform = '';
     }).catch((res) => {
     });// if bad response
     $.ajax({   
@@ -80,7 +84,15 @@ function render(res){
     } 
 }
 
-
+function emptyFields(){
+    if (calcToPerform == ''){
+        alert(`please select an operator '+', '-', '/', or 'x'`)
+    }
+    if (inputOne == '' || inputTwo == ''){
+        alert('Please enter two numbers and a calculation symbol between them.');
+        return true;
+    }
+}// end empty fields
 
 
 
