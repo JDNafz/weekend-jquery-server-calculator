@@ -19,7 +19,7 @@ Keep a historical record of all math operations and solutions on the server. Dis
 > NOTE: History should exist even after refreshing the page. It's expected that the history will go away after restarting the server. We'll talk about long term data storage next week.
 
 ---
-![base mode interface](images/baseMode.png)
+![base mode interface](server/public/images/baseMode.png)
 ---
 
 > Note: Do not use eval() to complete this assignment.
@@ -31,7 +31,7 @@ Keep a historical record of all math operations and solutions on the server. Dis
   *Interfaces that mirror real world objects are often more intuitive and self-explanatory for users.*
 
 ---
-![calculator interface](images/stretchGoal_interface.gif)
+![calculator interface](server/public/images/stretchGoal_interface.gif)
 ---
 
 - Only allow the POST call to happen if all necessary input is ready.
