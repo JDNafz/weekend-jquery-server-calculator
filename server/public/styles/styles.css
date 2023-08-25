@@ -1,3 +1,28 @@
+/* colors */
 body {
-    background-color: rgb(148, 164, 235);
+  background: rgb(148, 164, 235);
 }
+
+input{
+  color: rgb(80, 94, 153);
+  border-color: rgb(90, 112, 213);
+}
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #5080b4;
+}
+
+.error-highlight{
+  outline: none;
+  border-color: 2px #bf3826;
+  box-shadow: 0 0 10px red;
+} 
+
+#container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+

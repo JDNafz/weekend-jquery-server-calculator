@@ -15,6 +15,7 @@ function clearInput(){
     $('#input-one').val('');
     $('#input-two').val('');
     $('#input-one').focus();
+    calcToPerform = '';
 }
 
 let calcToPerform = '';
@@ -36,6 +37,11 @@ function setCalc(){
 
 function submit(){
     console.log('in submit()')
+    
+    if (emptyFields()){
+        return
+    }
+    
     let postData = {
         number1: $('#input-one').val(),
         number2: $('#input-two').val(),
@@ -96,7 +102,9 @@ function render(res){
 
 
 //STRETCH GOALS:
-    //TODO: convert interface to normal calc
+    //TODO: convert interface to normal calc 
+                //number buttons
+                //block /inline blcok layout
     //TODO: Show an alert if they left inputs empty
     //TODO: Clear history by clicking on a button. NOT A GET nor a POST
             //TODO: research DELETE request!
