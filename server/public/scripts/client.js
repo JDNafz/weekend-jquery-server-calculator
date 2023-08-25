@@ -1,43 +1,36 @@
 $(document).ready(onReady);
 
 function onReady() {
-  console.log("JQ running OnReady")
-  $('#submit-btn').on('click', submitData); 
+    // as soon as page loads > get list of artists from server
+    // $.ajax({   
+    //     type: 'GET',  
+    //     url: '/place' 
+    // }).then( (res) => { // if good response ie 200,201:
+    //    // do something
+    // }).catch((res) => { // if bad response
 
-} //end handleReady
+    // });//end Catch
+    console.log("hello");
+} // end onReady
+ 
+//  ✅    
+// TODO:    two inputs, one submit('='), 'C' clear button, +, -, * /
+// TODO:    client POST inputs
+// TODO:    server POST inputs
+// TODO:    server data structure
+            //  History: Array of all previous calculations
+            //      UPDATE (rerenderDOM)
+// TODO:    server perform math operations
+            //  Addition, Subtraction, Multiplication, and Division.
+            // server responds 'OK'
+// TODO:    client GET req
+// TODO:    server GET
+// TODO:    client update DOM
+// TODO:    
+// TODO:    
+// * Do not use eval()
 
-function submitData(){
-  const postObj = {
-  reqValues : [
-    {one: $('#input-one').val()},
-    {two: $('#input-two').val()},
-    {three: $('#najma-guess').val()}
-  ]
-  }
-  postInput ( postObj ) ;
-}//end submitGuesses 
 
-
-
-//CLIENT POST 
-function postInput(postObj){
-
-    $.ajax({   
-    type: 'POST',  
-    url: '/route',
-    data: postObj     //send the item
-  }).then( (res) => { // if good response ie 200,201:
-    console.log("IT WORK THEY 201")
-    $('#input-one').val("");           //empty inputs
-    $('#input-two').val("");           //empty inputs
-    $('#input-three').val("");           //empty inputs
-    // $('#inDescription').val("");    //empty inputs
-    // getCurrentInventory();          // GET STATE
-    // $('#inItem').focus();           //curser back to input
-  }).catch((res) => { // if bad response
-    console.log("CATCH: data issue")
-  });//end Catch
-
-}//end postTheGuess
-
-//CLIENT GET
+//STRETCH GOALS:
+    //TODO: convert interface to normal calc
+    //TODO: TBC
