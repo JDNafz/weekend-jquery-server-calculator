@@ -22,7 +22,7 @@ function onReady() {
             //      UPDATE (rerenderDOM)
 // TODO:    server perform math operations
             //  Addition, Subtraction, Multiplication, and Division.
-            // server responds 'OK'
+            // server responds 'OK' 
 // TODO:    client GET req
 // TODO:    server GET
 // TODO:    client update DOM
