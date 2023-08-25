@@ -3,6 +3,7 @@ $(document).ready(onReady);
 function onReady() {
     // as soon as page loads > get list of artists from server
     $('#submit-btn').on('click', submit)
+    $('#clear-btn').on('click', clearInput)
 
     $('#plus').on('click', setCalc)
     $('#minus').on('click', setCalc)
@@ -10,6 +11,11 @@ function onReady() {
     $('#multiply').on('click', setCalc)
 } // end onReady
 
+function clearInput(){
+    $('#input-one').val('');
+    $('#input-two').val('');
+    $('#input-one').focus();
+}
 
 let calcToPerform = '';
 function setCalc(){
@@ -40,17 +46,12 @@ function submit(){
         url: '/calc',
         data: postData
     }).then( (res) => { // if good response ie 200,201:
-        console.log('in Then');
-        $('#input-one').val('');
-        $('#input-two').val('');
-        $('#input-one').focus();
-    }).catch((res) => { 
+    }).catch((res) => {
     });// if bad response
     $.ajax({   
         type: 'GET',  
         url: '/calc' 
     }).then( (res) => { // if good response ie 200,201:
-        console.log('allCalcs received')
        render(res);
     }).catch((res) => { 
     });// if bad response
@@ -89,7 +90,7 @@ function render(res){
 //   ✅     client GET req
 //   ✅     server GET
 //   ✅     client update DOM
-// TODO:    
+//  ✅      Clear button
 // TODO:    
 // * Do not use eval()
 

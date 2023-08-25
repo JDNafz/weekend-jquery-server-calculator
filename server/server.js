@@ -26,7 +26,7 @@ app.post('/calc', (req,res) => {
 
 function calcToPerform(info){
   if (info.calc == '+'){
-    return info.number1 + info.number2
+    return Number(info.number1) + Number(info.number2)
   }
   if (info.calc == '-'){
     return info.number1 - info.number2
