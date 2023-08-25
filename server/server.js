@@ -11,20 +11,24 @@ app.use(express.static('server/public'));
 
 
 
-let dataStructure = [];
+let previousCalcs = [];
 
 //POST Routes go here
-app.post('/route', (req,res) => {
-  let reqBody = req.body;
-  dataStructure.push(reqBody);
+app.post('/calc', (req,res) => {
+  calculate(req.body)
+  previousCalcs.push(req.body);
 
   res.sendStatus(201); // send back "Submitted"
 });
 
+function calculate(){
+  
+}
+
 
 // GET  Routes go here
 app.get('/guess', (req, res) => {
-  res.send(dataStructure);
+  res.send(previousCalcs);
 });
 
 
