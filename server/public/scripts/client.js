@@ -117,9 +117,16 @@ function emptyFields(){
     //TODO: convert interface to normal calc 
                 //number buttons
                 //block /inline blcok layout
-    //TODO: Show an alert if they left inputs empty
+    // ✅   Show an alert if they left inputs empty
     //TODO: Clear history by clicking on a button. NOT A GET nor a POST
             //TODO: research DELETE request!
+            // $.ajax({
+            //     url: '/script.cgi',
+            //     type: 'DELETE',
+            //     success: function(result) {
+            //         // Do something with the result
+            //     }
+            // });
     //TODO: Allow a user to click on an entry in the History list to re-run that calculation. 
         //  This should display the answer on the calculator interface like a normal calculation.
     //TODO: Other logical progression?
