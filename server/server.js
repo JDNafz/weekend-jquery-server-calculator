@@ -16,6 +16,7 @@ let calcCount = 0;
 
 //POST Routes go here
 app.post('/calc', (req,res) => {
+  console.log('calc recieved')
   req.body['result'] = calcToPerform(req.body);
   req.body['calcCount'] = calcCount;
   calcCount ++;
@@ -39,7 +40,8 @@ function calcToPerform(info){
 }; // end calc to perform
 
 // GET  Routes go here
-app.get('/guess', (req, res) => {
+app.get('/calc', (req, res) => {
+  console.log('sending allCalcs')
   res.send(allCalcs);
 });
 

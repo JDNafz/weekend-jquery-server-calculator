@@ -46,16 +46,32 @@ function submit(){
         $('#input-one').focus();
     }).catch((res) => { 
     });// if bad response
+    $.ajax({   
+        type: 'GET',  
+        url: '/calc' 
+    }).then( (res) => { // if good response ie 200,201:
+        console.log('allCalcs received')
+       render(res);
+    }).catch((res) => { 
+    });// if bad response
 }//end submit
 
-$.ajax({   
-    type: 'GET',  
-    url: '/place' 
-}).then( (res) => { // if good response ie 200,201:
-   // do something
-}).catch((res) => { 
-});// if bad response
 
+
+function render(res){
+    console.log('in render')
+    // console.log(res);
+    let el = $('#insertion');
+    el.empty();
+    for (let calc of res){
+        console.log(calc);
+      el.append(`
+        <li id='calc${calc.calcCount}' class="calcLine" data-index="${calc.calcCount}">
+            ${calc.number1} ${calc.calc} ${calc.number2} = ${calc.result}
+        </li>
+      `);
+    } 
+}
 
 
 
@@ -70,9 +86,9 @@ $.ajax({
 //   ✅     server perform math operations
 //                  Addition, Subtraction, Multiplication, and Division.
 //   ✅      server responds 'OK' 
-// TODO:    client GET req
-// TODO:    server GET
-// TODO:    client update DOM
+//   ✅     client GET req
+//   ✅     server GET
+//   ✅     client update DOM
 // TODO:    
 // TODO:    
 // * Do not use eval()
