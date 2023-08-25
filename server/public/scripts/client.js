@@ -29,6 +29,7 @@ function setCalc(){
 
 
 function submit(){
+    console.log('in submit()')
     let postData = {
         number1: $('#input-one').val(),
         number2: $('#input-two').val(),
@@ -39,12 +40,12 @@ function submit(){
         url: '/calc',
         data: postData
     }).then( (res) => { // if good response ie 200,201:
-       // do something
+        console.log('in Then');
+        $('#input-one').val('');
+        $('#input-two').val('');
+        $('#input-one').focus();
     }).catch((res) => { 
     });// if bad response
-    
-
-
 }//end submit
 
 $.ajax({   
@@ -62,14 +63,13 @@ $.ajax({
 
 //  ✅    
 //  ✅      two inputs, one submit('='), 'C' clear button, +, -, * /
-// TODO:    client POST inputs
-// TODO:    server POST inputs
-// TODO:    server data structure
-            //  History: Array of all previous calculations
-            //      UPDATE (rerenderDOM)
-// TODO:    server perform math operations
-            //  Addition, Subtraction, Multiplication, and Division.
-            // server responds 'OK' 
+//  ✅      client POST inputs
+//  ✅      server POST inputs
+//   ✅     server data structure
+//  ✅          History: Array of all previous calculations
+//   ✅     server perform math operations
+//                  Addition, Subtraction, Multiplication, and Division.
+//   ✅      server responds 'OK' 
 // TODO:    client GET req
 // TODO:    server GET
 // TODO:    client update DOM

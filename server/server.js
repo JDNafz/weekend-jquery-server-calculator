@@ -11,24 +11,36 @@ app.use(express.static('server/public'));
 
 
 
-let previousCalcs = [];
+let allCalcs = [];
+let calcCount = 0;
 
 //POST Routes go here
 app.post('/calc', (req,res) => {
-  calculate(req.body)
-  previousCalcs.push(req.body);
-
+  req.body['result'] = calcToPerform(req.body);
+  req.body['calcCount'] = calcCount;
+  calcCount ++;
+  allCalcs.push(req.body);
   res.sendStatus(201); // send back "Submitted"
 });
 
-function calculate(){
-  
-}
-
+function calcToPerform(info){
+  if (info.calc == '+'){
+    return info.number1 + info.number2
+  }
+  if (info.calc == '-'){
+    return info.number1 - info.number2
+  }
+  if (info.calc == '/'){
+    return info.number1 / info.number2
+  }
+  if (info.calc == '*'){
+    return info.number1 * info.number2
+  }
+}; // end calc to perform
 
 // GET  Routes go here
 app.get('/guess', (req, res) => {
-  res.send(previousCalcs);
+  res.send(allCalcs);
 });
 
 
