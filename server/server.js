@@ -14,15 +14,27 @@ app.use(express.static('server/public'));
 let allCalcs = [];
 let calcCount = 0;
 
-//POST Routes go here
+//POST Routes go here Create Read Update Delete
+//                                PUT   DELETE   
+//                    POST   GET
 app.post('/calc', (req,res) => {
-  console.log('calc recieved')
+  // console.log('calc recieved',req)
   req.body['result'] = calcToPerform(req.body);
   req.body['calcCount'] = calcCount;
   calcCount ++;
   allCalcs.push(req.body);
   res.sendStatus(201); // send back "Submitted"
 });
+// {
+// number1: 1,
+// number2: 1,
+// calc: +,
+// result: 2,
+// calcCount: 0
+
+// }
+
+
 
 function calcToPerform(info){
   if (info.calc == '+'){

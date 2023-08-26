@@ -84,6 +84,7 @@ function render(res){
     } 
 }
 
+
 function emptyFields(){
     if (calcToPerform == ''){
         alert(`please select an operator '+', '-', '/', or 'x'`)
