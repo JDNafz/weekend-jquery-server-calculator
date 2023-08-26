@@ -5,49 +5,103 @@ function onReady() {
     $('#submit-btn').on('click', submit)
     $('#clear-btn').on('click', clearInput)
 
-    $('#plus').on('click', setCalc)
-    $('#minus').on('click', setCalc)
-    $('#divide').on('click', setCalc)
-    $('#multiply').on('click', setCalc)
+    $('#one').on('click', fieldAppend)
+    $('#two').on('click',fieldAppend)
+    $('#three').on('click',fieldAppend)
+    $('#four').on('click',fieldAppend)
+    $('#five').on('click',fieldAppend)
+    $('#six').on('click',fieldAppend)
+    $('#seven').on('click',fieldAppend)
+    $('#eight').on('click',fieldAppend)
+    $('#nine').on('click',fieldAppend)
+    $('#zero').on('click',fieldAppend)
+    $('#period').on('click',fieldAppend)
+
+    $('#plus').on('click', fieldAppend)
+    $('#minus').on('click', fieldAppend)
+    $('#divide').on('click', fieldAppend)
+    $('#multiply').on('click', fieldAppend)
 } // end onReady
 
 function clearInput(){
     $('#input-one').val('');
     $('#input-two').val('');
     $('#input-one').focus();
-    calcToPerform = '';
+    field = '';
+    // calcToPerform = '';
 }
 
-let inputOne = '';
-let inputTwo = '';
+let numberOne = '';
+let numberTwo = '';
 let calcToPerform = '';
-function setCalc(){
-    if (this.id == 'plus'){
-        calcToPerform = '+'
+let num2slice = 0;
+let field = '';
+
+//it's like this, but it's dis now
+function fieldAppend(){
+    // checkForSymbolError(this); TODO
+    // console.log(this);
+    if (field[field.length -1] == ''){ // if the symbol is first char
+        alert('Don\'t put symbol first');
+        return;
     }
-    if (this.id == 'minus'){
-        calcToPerform = '-'
+    if (this.value > -1){
+        console.log('number input')
+    } else{
+        console.log('symbol input');
+        numberOne = field.slice(0,field.length);
+        // console.log("numberOne: ",numberOne)
+        calcToPerform = this.value;
+        console.log(this.value)
+        num2slice = field.length + 1;
+        // field = "!" // use as a marker for entering second number
     }
-    if (this.id == 'multiply'){
-        calcToPerform = '*'
-    }
-    if (this.id == 'divide'){
-        calcToPerform = '/'
-    }    
-}//end setCalc
+    
+    
+    field += this.value
+    $('#input-one').val(field);
+
+
+}// end fieldAppend    
+
+function checkForSymbolError(){
+        // let baddieChars = ['x','/','-','+'];
+    // // console.log('checking things')
+    // for (let baddie of baddieChars){
+    //     if( dis.value == baddie){
+    //         if (!field.length){ // if field is empty
+    //             //DONT MAKE FIRST CHAR a symbol
+    //             console.log('first one is a baddie')
+    //             $(`#${dis.id}`).addClass('error-highlight');
+    //             return
+    //         } 
+    //         //last symbol was a baddie check if char is baddie
+    //         for (let baddie of baddieChars){
+    //             // console.log(field[field.length-1])
+    //             if (field[field.length-1] == baddie){
+                    
+    //                 $(`#${dis.id}`).addClass('error-highlight');   
+    //                 return
+    //             }
+    //         }
+    //     }
+    // } //value is not a baddie
+}
 
 
 function submit(){
     console.log('in submit()')
-    
+    numberTwo = field.slice(num2slice,field.length)
+
     let postData = {
-        number1: $('#input-one').val(),
-        number2: $('#input-two').val(),
+        number1: numberOne,
+        number2: numberTwo,
         calc: calcToPerform
     }
-    inputOne = Number(postData.number1);
-    inputTwo = Number(postData.number2);
-    if (emptyFields(inputOne,inputTwo)){
+    console.log("postData: ",postData);
+    numberOne = Number(postData.number1);
+    numberTwo = Number(postData.number2);
+    if (emptyFields(numberOne,numberTwo)){
         return
     }
     $.ajax({   
@@ -86,13 +140,16 @@ function render(res){
 
 
 function emptyFields(){
-    if (calcToPerform == ''){
-        alert(`please select an operator '+', '-', '/', or 'x'`)
+    if ($('#input-one').val() == ''){
+        alert('please enter an operation');
     }
-    if (inputOne == '' || inputTwo == ''){
-        alert('Please enter two numbers and a calculation symbol between them.');
-        return true;
-    }
+    // if (calcToPerform == ''){
+    //     alert(`please select an operator '+', '-', '/', or 'x'`)
+    // }
+    // if (numberOne == '' || inputTwo == ''){
+    //     alert('Please enter two numbers and a calculation symbol between them.');
+    //     return true;
+    // }
 }// end empty fields
 
 

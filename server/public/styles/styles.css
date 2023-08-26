@@ -11,10 +11,18 @@ input:focus {
   outline: none;
   box-shadow: 0 0 10px #5080b4;
 }
-
+.btn {
+    width: 45px;
+    height: 25px;
+    border-radius: 17%;
+}
+#input-one{
+    width: 136px;
+    border-radius: 5%;
+}
 .error-highlight{
   outline: none;
-  border-color: 2px #bf3826;
+  border-top-color: 2px #bf3826;
   box-shadow: 0 0 10px red;
 } 
 
@@ -26,3 +34,6 @@ input:focus {
 }
 
 
+#form div {
+    margin: 2px;
+}

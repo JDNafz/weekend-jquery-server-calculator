@@ -37,6 +37,7 @@ app.post('/calc', (req,res) => {
 
 
 function calcToPerform(info){
+  console.log(info);
   if (info.calc == '+'){
     return Number(info.number1) + Number(info.number2)
   }
@@ -46,7 +47,7 @@ function calcToPerform(info){
   if (info.calc == '/'){
     return info.number1 / info.number2
   }
-  if (info.calc == '*'){
+  if (info.calc == 'x'){
     return info.number1 * info.number2
   }
 }; // end calc to perform
