@@ -5,49 +5,78 @@ function onReady() {
     $('#submit-btn').on('click', submit)
     $('#clear-btn').on('click', clearInput)
 
-    $('#plus').on('click', setCalc)
-    $('#minus').on('click', setCalc)
-    $('#divide').on('click', setCalc)
-    $('#multiply').on('click', setCalc)
+    $('#one').on('click',fieldAppend())
+    $('#two').on('click',fieldAppend())
+    $('#three').on('click',fieldAppend())
+    $('#four').on('click',fieldAppend())
+    $('#five').on('click',fieldAppend())
+    $('#six').on('click',fieldAppend())
+    $('#seven').on('click',fieldAppend())
+    $('#eight').on('click',fieldAppend())
+    $('#nine').on('click',fieldAppend())
+    $('#zero').on('click',fieldAppend())
+    $('#period').on('click',fieldAppend())
+
+    $('#plus').on('click', fieldAppend())
+    $('#minus').on('click', fieldAppend())
+    $('#divide').on('click', fieldAppend())
+    $('#multiply').on('click', fieldAppend())
 } // end onReady
 
 function clearInput(){
     $('#input-one').val('');
     $('#input-two').val('');
     $('#input-one').focus();
-    calcToPerform = '';
+    // calcToPerform = '';
 }
 
-let inputOne = '';
-let inputTwo = '';
-let calcToPerform = '';
-function setCalc(){
-    if (this.id == 'plus'){
-        calcToPerform = '+'
-    }
-    if (this.id == 'minus'){
-        calcToPerform = '-'
-    }
-    if (this.id == 'multiply'){
-        calcToPerform = '*'
-    }
-    if (this.id == 'divide'){
-        calcToPerform = '/'
-    }    
-}//end setCalc
+let numberOne = '';
+let numberTwo = '';
+let field = '';
+
+//it's like this, but it's dis now
+function fieldAppend(dis){
+    let baddieChars = ['x','/','-','+'];
+    // console.log('checking things')
+    for (let baddie of baddieChars){
+        if( dis.value == baddie){
+            if (!field.length){ // if field is empty
+                //DONT MAKE FIRST CHAR a symbol
+                console.log('first one is a baddie')
+                $(`#${dis.id}`).addClass('error-highlight');
+                return
+            } 
+            //last symbol was a baddie check if char is baddie
+            for (let baddie of baddieChars){
+                // console.log(field[field.length-1])
+                if (field[field.length-1] == baddie){
+                    
+                    $(`#${dis.id}`).addClass('error-highlight');   
+                    return
+                }
+            }
+        }
+    } //value is not a baddie
+    console.log(dis.value);
+    field += dis.value
+    $('#input-one').val(field);
+}// end fieldAppend    
+
 
 
 function submit(){
     console.log('in submit()')
-    
+    let string = JSON.
+
+
     let postData = {
-        number1: $('#input-one').val(),
-        number2: $('#input-two').val(),
+        number1: numberOne,
+        number2: numberTwo,
         calc: calcToPerform
     }
-    inputOne = Number(postData.number1);
-    inputTwo = Number(postData.number2);
-    if (emptyFields(inputOne,inputTwo)){
+    numberOne = Number(postData.number1);
+    numberTwo = Number(postData.number2);
+    if (emptyFields(numberOne,numberTwo)){
         return
     }
     $.ajax({   
@@ -88,7 +117,7 @@ function emptyFields(){
     if (calcToPerform == ''){
         alert(`please select an operator '+', '-', '/', or 'x'`)
     }
-    if (inputOne == '' || inputTwo == ''){
+    if (numberOne == '' || inputTwo == ''){
         alert('Please enter two numbers and a calculation symbol between them.');
         return true;
     }

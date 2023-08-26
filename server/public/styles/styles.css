@@ -22,7 +22,7 @@ input:focus {
 }
 .error-highlight{
   outline: none;
-  border-color: 2px #bf3826;
+  border-top-color: 2px #bf3826;
   box-shadow: 0 0 10px red;
 } 
 
