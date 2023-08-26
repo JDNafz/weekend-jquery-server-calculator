@@ -41,14 +41,15 @@ let field = '';
 function fieldAppend(){
     // checkForSymbolError(this); TODO
     // console.log(this);
-    if (field[field.length -1] == ''){ // if the symbol is first char
-        alert('Don\'t put symbol first');
-        return;
-    }
     if (this.value > -1){
         console.log('number input')
     } else{
         console.log('symbol input');
+        if (!field.length){
+            alert('not first');
+            // $(`#${this.id}`).addClass('error-highlight') TODO: blink?
+            return
+        }
         numberOne = field.slice(0,field.length);
         // console.log("numberOne: ",numberOne)
         calcToPerform = this.value;
@@ -56,7 +57,6 @@ function fieldAppend(){
         num2slice = field.length + 1;
         // field = "!" // use as a marker for entering second number
     }
-    
     
     field += this.value
     $('#input-one').val(field);
