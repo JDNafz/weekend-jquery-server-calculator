@@ -67,30 +67,6 @@ function fieldAppend(){
 
 }// end fieldAppend    
 
-function checkForSymbolError(){
-        // let baddieChars = ['x','/','-','+'];
-    // // console.log('checking things')
-    // for (let baddie of baddieChars){
-    //     if( dis.value == baddie){
-    //         if (!field.length){ // if field is empty
-    //             //DONT MAKE FIRST CHAR a symbol
-    //             console.log('first one is a baddie')
-    //             $(`#${dis.id}`).addClass('error-highlight');
-    //             return
-    //         } 
-    //         //last symbol was a baddie check if char is baddie
-    //         for (let baddie of baddieChars){
-    //             // console.log(field[field.length-1])
-    //             if (field[field.length-1] == baddie){
-                    
-    //                 $(`#${dis.id}`).addClass('error-highlight');   
-    //                 return
-    //             }
-    //         }
-    //     }
-    // } //value is not a baddie
-}
-
 
 function submit(){
     console.log('in submit()')
