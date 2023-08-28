@@ -36,27 +36,30 @@ let numberTwo = '';
 let calcToPerform = '';
 let num2slice = 0;
 let field = '';
+let lastWasSymbol = true;
 
 //it's like this, but it's dis now
 function fieldAppend(){
     // checkForSymbolError(this); TODO
     // console.log(this);
     if (this.value > -1){
-        console.log('number input')
+        // console.log('number input')
+        lastWasSymbol = false;
+        console.log(lastWasSymbol)
     } else{
-        console.log('symbol input');
-        if (!field.length){
-            alert('not first');
-            // $(`#${this.id}`).addClass('error-highlight') TODO: blink?
-            return
+        console.log('symbol input',lastWasSymbol)
+        if (lastWasSymbol){ //if the last  input char was symbol, remove it replace it with the current one.
+            console.log('last one was a symbol!')
+            field = field.slice(0,field.length -1);
         }
+        lastWasSymbol = true;
         numberOne = field.slice(0,field.length);
         // console.log("numberOne: ",numberOne)
         calcToPerform = this.value;
-        console.log(this.value)
-        num2slice = field.length + 1;
-        // field = "!" // use as a marker for entering second number
+        // console.log(this.value)
+        num2slice = field.length + 1; //indicates the starting index for the slice of the second number.
     }
+        
     
     field += this.value
     $('#input-one').val(field);
@@ -119,17 +122,18 @@ function submit(){
        render(res);
     }).catch((res) => { 
     });// if bad response
+    field = '';
 }//end submit
 
 
 
 function render(res){
-    console.log('in render')
+    // console.log('in render')
     // console.log(res);
     let el = $('#insertion');
     el.empty();
     for (let calc of res){
-        console.log(calc);
+        // console.log(calc);
       el.append(`
         <li id='calc${calc.calcCount}' class="calcLine" data-index="${calc.calcCount}">
             ${calc.number1} ${calc.calc} ${calc.number2} = ${calc.result}
@@ -167,14 +171,11 @@ function emptyFields(){
 //   ✅     server GET
 //   ✅     client update DOM
 //  ✅      Clear button
-// TODO:    
-// * Do not use eval()
 
 
 //STRETCH GOALS:
-    //TODO: convert interface to normal calc 
-                //number buttons
-                //block /inline blcok layout
+    //✅  convert interface to normal calc 
+                //✅ number buttons
     // ✅   Show an alert if they left inputs empty
     //TODO: Clear history by clicking on a button. NOT A GET nor a POST
             //TODO: research DELETE request!
