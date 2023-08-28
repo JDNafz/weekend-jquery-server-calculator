@@ -40,27 +40,17 @@ let lastWasSymbol = true;
 
 //it's like this, but it's dis now
 function fieldAppend(){
-    // checkForSymbolError(this); TODO
-    // console.log(this);
-    if (this.value > -1){
-        // console.log('number input')
+    if (this.value > -1){ // if a number is input this will be true, if it's a symbol, it will return false.
         lastWasSymbol = false;
-        console.log(lastWasSymbol)
     } else{
-        console.log('symbol input',lastWasSymbol)
-        if (lastWasSymbol){ //if the last  input char was symbol, remove it replace it with the current one.
-            console.log('last one was a symbol!')
-            field = field.slice(0,field.length -1);
+        if (lastWasSymbol){ //if the previous input char was symbol, remove it replace it with the current one.
+            field = field.slice(0,field.length -1); //pop the old one off, replace with the current after end of else 
         }
         lastWasSymbol = true;
-        numberOne = field.slice(0,field.length);
-        // console.log("numberOne: ",numberOne)
-        calcToPerform = this.value;
-        // console.log(this.value)
+        numberOne = field.slice(0,field.length);//note the first number, now that a symbol has been input.
+        calcToPerform = this.value;// note which operation we will do.
         num2slice = field.length + 1; //indicates the starting index for the slice of the second number.
-    }
-        
-    
+    }//end of else
     field += this.value
     $('#input-one').val(field);
 
@@ -69,7 +59,6 @@ function fieldAppend(){
 
 
 function submit(){
-    console.log('in submit()')
     numberTwo = field.slice(num2slice,field.length)
 
     let postData = {
@@ -77,7 +66,6 @@ function submit(){
         number2: numberTwo,
         calc: calcToPerform
     }
-    console.log("postData: ",postData);
     numberOne = Number(postData.number1);
     numberTwo = Number(postData.number2);
     if (emptyFields(numberOne,numberTwo)){
@@ -104,12 +92,9 @@ function submit(){
 
 
 function render(res){
-    // console.log('in render')
-    // console.log(res);
     let el = $('#insertion');
     el.empty();
     for (let calc of res){
-        // console.log(calc);
       el.append(`
         <li id='calc${calc.calcCount}' class="calcLine" data-index="${calc.calcCount}">
             ${calc.number1} ${calc.calc} ${calc.number2} = ${calc.result}
