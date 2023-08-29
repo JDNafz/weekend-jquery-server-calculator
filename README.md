@@ -2,7 +2,7 @@
 
 ## Description
 
-I made a calculator that takes in data from the client and does the calculations on the server, making use of ajax POST and GET calls, exibiting the first two elements of CRUD.
+I made a calculator that takes in data from the client and does the calculations on the server, making use of ajax POST and GET calls, exhibiting the first two elements of CRUD.
 
 
 //  ✅  two inputs, one submit('='), 'C' clear button, +, -, * /
