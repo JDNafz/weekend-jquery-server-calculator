@@ -25,6 +25,22 @@ I made a calculator that takes in data from the client and does the calculations
 
 
 
+```npm install -g heroku```
+
+You will need to login from your terminal to use to use the heroku CLI command:
+```heroku login```
+
+Create a Heroku Project
+Run ```heroku create```
+
+Type ```git remote -v``` to ensure it added successfully. You should see a remote called heroku
+
+Heroku works by creating a new git remote. Just like we can push our repo to Github (origin), we will now be able to push our repo to heroku:
+```git push heroku main```
+
+To open your app in a browser:
+```heroku open```
+
 
 
 
